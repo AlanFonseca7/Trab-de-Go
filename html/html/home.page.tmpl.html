@@ -1,0 +1,38 @@
+
+  <h2>Mudanças</h2>
+
+  <form action="/savedata" method="post">
+    <input class="inputentrar" type="text" name="title" placeholder="Tarefa">
+    <br><br>
+    <textarea class="inputentrar" name="content" placeholder="Descrição" style="white-space: pre-wrap"></textarea>
+    <br><br>
+    <input type="submit" class="button" name="submit" value="Criar">
+  </form>
+  <br><br>
+  <h2>Ultimas mudanças</h2>
+  {{if .}}
+    {{range .}}
+      <table >
+        <tr>
+          <th>
+            <h3 class="tarefa">{{.Title}}</h3>
+            <form action="/delete" method="post">
+              <button type="submit" name="delete" value="{{.ID}}" class="delete">               
+                </button>
+            </form>
+            <form action="/editpage?id={{.ID}}" method="post">
+              <button type="submit" name="edit" class="edit">                
+                </button>
+            </form>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            {{.Content}}
+          </td>
+        </tr>
+      </table>
+      <br>
+    {{end}}
+  {{else}}
+    <p>Nada está sendo executado.</p>
